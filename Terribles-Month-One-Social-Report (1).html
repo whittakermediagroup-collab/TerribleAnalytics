@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terrible's | Month One Social Performance Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D6202F;
+    --red-dark: #A81622;
+    --navy: #1E3A6E;
+    --ink: #15161B;
+    --paper: #FAFAF8;
+    --card: #FFFFFF;
+    --line: #E4E2DC;
+    --muted: #6C6F77;
+    --green: #1E7B45;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .stripe {
+    height: 10px;
+    background: repeating-linear-gradient(-45deg, var(--red) 0 14px, var(--navy) 14px 28px, #fff 28px 42px);
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--red);
+    color: #fff;
+    padding: 56px 7vw 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::after {
+    content: 'TERRIBLE\2019S';
+    position: absolute;
+    right: -2vw;
+    bottom: -5.5vw;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 16vw;
+    letter-spacing: -0.02em;
+    color: rgba(255,255,255,0.07);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .cover h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(56px, 9vw, 118px);
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    position: relative;
+    z-index: 1;
+  }
+  .cover h1 .outline {
+    color: transparent;
+    -webkit-text-stroke: 2px #fff;
+  }
+  .cover-sub {
+    margin-top: 20px;
+    max-width: 620px;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 52px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 52px;
+    line-height: 1;
+    display: block;
+  }
+  .cover-stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* ── LAYOUT ── */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 64px 0 8px; }
+
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(34px, 4.5vw, 48px);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 18px;
+  }
+  .lede {
+    max-width: 760px;
+    font-size: 16.5px;
+    color: #33353c;
+    margin-bottom: 36px;
+  }
+  .lede strong { color: var(--ink); }
+
+  /* ── KPI GRID ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .kpi {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--red);
+    padding: 22px 22px 18px;
+  }
+  .kpi.navy { border-top-color: var(--navy); }
+  .kpi-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 46px;
+    line-height: 1;
+    letter-spacing: 0.005em;
+  }
+  .kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .delta {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--green);
+    background: #E9F4EE;
+    border-radius: 3px;
+    padding: 3px 8px;
+  }
+
+  /* ── SPOTLIGHT ── */
+  .spotlight {
+    background: var(--navy);
+    color: #fff;
+    padding: 44px 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .spotlight .kicker { color: #FFC2C8; }
+  .spotlight h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(30px, 4vw, 42px);
+    text-transform: uppercase;
+    line-height: 1.02;
+    margin-bottom: 14px;
+  }
+  .spotlight p { max-width: 700px; color: #D9E0EE; font-size: 15.5px; }
+  .spot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .spot-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.16);
+    padding: 18px;
+  }
+  .spot-plat {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #FFC2C8;
+    margin-bottom: 10px;
+  }
+  .spot-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 38px;
+    line-height: 1;
+  }
+  .spot-sub { font-size: 13px; color: #C4CDE0; margin-top: 6px; }
+  .viral-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--red);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-top: 12px;
+  }
+
+  /* ── PLATFORM BLOCKS ── */
+  .plat-block {
+    background: var(--card);
+    border: 1px solid var(--line);
+    margin-bottom: 22px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+  }
+  .plat-head {
+    background: var(--ink);
+    color: #fff;
+    padding: 26px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .plat-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .plat-handle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: #B9BBC2;
+    margin-top: 6px;
+  }
+  .plat-follow-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    line-height: 1;
+  }
+  .plat-follow-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #B9BBC2;
+    margin-top: 4px;
+  }
+  .plat-follow-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #7ED9A2;
+    margin-top: 6px;
+  }
+  .plat-body { padding: 24px 26px; }
+  .metric-row {
+    display: grid;
+    grid-template-columns: 170px 1fr 130px;
+    gap: 14px;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .metric-row:last-child { border-bottom: none; }
+  .m-label { font-size: 13.5px; font-weight: 600; }
+  .m-bar-bg { height: 8px; background: #EFEDE7; border-radius: 4px; overflow: hidden; }
+  .m-bar { height: 8px; background: var(--red); border-radius: 4px; }
+  .m-bar.navy { background: var(--navy); }
+  .m-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .m-val small { display: block; font-size: 10.5px; color: var(--green); font-weight: 600; }
+  .plat-note { font-size: 13px; color: var(--muted); margin-top: 14px; }
+
+  /* ── TOP CONTENT CARDS ── */
+  .top-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .top-card {
+    display: grid;
+    grid-template-columns: 44px 120px 1fr;
+    gap: 20px;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 16px 20px;
+  }
+  .rank {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    color: var(--red);
+    line-height: 1;
+  }
+  .top-thumb-link { display: block; position: relative; }
+  .top-thumb {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--line);
+    transition: opacity 0.15s ease;
+  }
+  .top-thumb-link:hover .top-thumb { opacity: 0.85; }
+  .top-thumb-link::after {
+    content: '\2197';
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    background: var(--red);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .post-title { font-weight: 700; font-size: 15px; }
+  .post-title a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--red); }
+  .post-title a:hover { color: var(--red); }
+  .post-date { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); margin: 3px 0 8px; }
+  .post-why { font-size: 13px; color: #3a3c43; margin-bottom: 10px; }
+  .stat-pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    background: #F2F0EA;
+    border-radius: 3px;
+    padding: 2px 7px;
+    margin: 2px 3px 2px 0;
+    white-space: nowrap;
+  }
+  .stat-pill b { color: var(--red); }
+  @media (max-width: 640px) {
+    .top-card { grid-template-columns: 32px 80px 1fr; padding: 14px; gap: 12px; }
+    .top-thumb { width: 80px; height: 80px; }
+  }
+
+  /* ── SYSTEMS ── */
+  .sys-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .sys {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--navy);
+    padding: 20px 22px;
+  }
+  .sys h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .sys p { font-size: 13.5px; color: #3a3c43; }
+
+  /* ── NEXT ── */
+  .next-list { max-width: 820px; margin-bottom: 48px; }
+  .next-item {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .next-item:last-child { border-bottom: none; }
+  .next-mark {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--red);
+  }
+  .next-item h5 { font-size: 15.5px; font-weight: 700; margin-bottom: 2px; }
+  .next-item p { font-size: 14px; color: #3a3c43; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: #B9BBC2;
+    padding: 28px 24px;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 720px) {
+    .plat-block { grid-template-columns: 1fr; }
+    .metric-row { grid-template-columns: 1fr; gap: 6px; }
+    .m-val { text-align: left; }
+    .top-table .hide-m { display: none; }
+  }
+  @media print {
+    .cover::after { display: none; }
+    section { padding: 32px 0 4px; }
+    .plat-block, .kpi, .spotlight { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER ═══════════ -->
+<div class="cover">
+  <div class="cover-top">
+    <span>Terrible's Marketing | Social &amp; Content</span>
+    <span>Reporting Period: Jun 29 &ndash; Jul 28, 2026</span>
+  </div>
+  <h1>Month One<br><span class="outline">On The Board</span></h1>
+  <p class="cover-sub">First full month of the rebuilt Terrible's content engine. One publishing system, five platforms, and the biggest organic moment the brand has had on social: the Primm Valley Resort &amp; Casino reopening.</p>
+  <div class="cover-stats">
+    <div><span class="cover-stat-num">433K</span><span class="cover-stat-label">Total Impressions</span></div>
+    <div><span class="cover-stat-num">15x</span><span class="cover-stat-label">vs. Prior Period</span></div>
+    <div><span class="cover-stat-num">5.55%</span><span class="cover-stat-label">Engagement Rate</span></div>
+    <div><span class="cover-stat-num">76</span><span class="cover-stat-label">Posts Published</span></div>
+  </div>
+</div>
+<div class="stripe"></div>
+
+<!-- ═══════════ AT A GLANCE ═══════════ -->
+<section class="wrap" id="glance">
+  <div class="kicker">01 &mdash; At a Glance</div>
+  <h2>The Engine Is Running</h2>
+  <p class="lede">In the first full reporting month, publishing volume went from <strong>30 posts to 76</strong> and the results scaled with it: <strong>433,322 impressions</strong>, up from 28,806 the prior period. More importantly, the growth was efficient. The cross-network engagement rate climbed from <strong>3.52% to 5.55%</strong>, which means the audience engaged more with each post even as output more than doubled. Volume without quality drops that number. It went up.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-num">433,322</div>
+      <div class="kpi-label">Post Impressions (All Networks)</div>
+      <span class="delta">&uarr; from 28,806 prior period</span>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">5.55%</div>
+      <div class="kpi-label">Cross-Network Engagement Rate</div>
+      <span class="delta">&uarr; 57.8% from 3.52%</span>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">50,081</div>
+      <div class="kpi-label">Video Views (All Networks)</div>
+      <span class="delta">&uarr; from 1,689 prior period</span>
+    </div>
+    <div class="kpi navy">
+      <div class="kpi-num">2,678</div>
+      <div class="kpi-label">Post Likes (All Networks)</div>
+      <span class="delta">&uarr; from 20 prior period</span>
+    </div>
+    <div class="kpi navy">
+      <div class="kpi-num">109,918</div>
+      <div class="kpi-label">Total Followers (All Networks)</div>
+      <span class="delta">&uarr; 1,412 net new (+1.3%)</span>
+    </div>
+    <div class="kpi navy">
+      <div class="kpi-num">76</div>
+      <div class="kpi-label">Posts Published</div>
+      <span class="delta">&uarr; 153% from 30</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRIMM SPOTLIGHT ═══════════ -->
+<section class="wrap" id="primm">
+  <div class="kicker">02 &mdash; Moment of the Month</div>
+  <h2>Primm Went Everywhere</h2>
+  <p class="lede">The Primm Valley Resort &amp; Casino reopening announcement on July 22 is the single biggest organic moment on record for these channels, and it hit on <strong>three platforms simultaneously</strong>. The rollout was coordinated: local news outlets and Vegas creators tagged for amplification, platform-native versions on each channel, and follow-up coverage the day of. This is the playbook for every major announcement going forward.</p>
+
+  <div class="spotlight">
+    <div class="kicker">Jul 22 &mdash; Primm Valley Resort &amp; Casino Reopening</div>
+    <h3>One Announcement. Three Viral Posts.</h3>
+    <p>A single coordinated push drove six figures of reach in 48 hours, spiked profile visits across every channel, and pulled in thousands of new viewers who had never seen the brand before.</p>
+    <div class="spot-grid">
+      <div class="spot-card">
+        <div class="spot-plat">Facebook</div>
+        <div class="spot-num">96,463</div>
+        <div class="spot-sub">unique views &middot; 1,130 likes &amp; reactions</div>
+        <span class="viral-tag">Viral Post</span>
+      </div>
+      <div class="spot-card">
+        <div class="spot-plat">Instagram</div>
+        <div class="spot-num">88,629</div>
+        <div class="spot-sub">reach &middot; 3,960 likes &middot; 5,914 engagements</div>
+        <span class="viral-tag">Viral Post</span>
+      </div>
+      <div class="spot-card">
+        <div class="spot-plat">TikTok</div>
+        <div class="spot-num">44,055</div>
+        <div class="spot-sub">video views &middot; 2,598 likes &middot; 9.3% eng. rate</div>
+        <span class="viral-tag">Viral Post</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PLATFORMS ═══════════ -->
+<section class="wrap" id="platforms">
+  <div class="kicker">03 &mdash; Platform Breakdown</div>
+  <h2>Channel by Channel</h2>
+  <p class="lede">Every active platform grew this month. Instagram is the engagement leader, Facebook is the reach machine, TikTok is the fastest-growing audience, and X is delivering efficient wins on zero ad spend.</p>
+
+  <!-- INSTAGRAM -->
+  <div class="plat-block">
+    <div class="plat-head">
+      <div>
+        <div class="plat-name">Instagram</div>
+        <div class="plat-handle">@terribleherbst</div>
+      </div>
+      <div>
+        <div class="plat-follow-num">21,068</div>
+        <div class="plat-follow-label">Followers</div>
+        <div class="plat-follow-delta">&uarr; +673 (+3.3%)</div>
+      </div>
+    </div>
+    <div class="plat-body">
+      <div class="metric-row">
+        <span class="m-label">Post Views</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:100%"></div></div>
+        <span class="m-val">211,011<small>&uarr; from 15,737</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Profile Reach</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:73%"></div></div>
+        <span class="m-val">155,013<small>&uarr; 749%</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Profile Views</span>
+        <div class="m-bar-bg"><div class="m-bar navy" style="width:100%"></div></div>
+        <span class="m-val">261,515<small>&uarr; 414%</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Engagements</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:52%"></div></div>
+        <span class="m-val">7,667<small>&uarr; from 271</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Shares</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:38%"></div></div>
+        <span class="m-val">1,713<small>&uarr; from 29</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Comments</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:16%"></div></div>
+        <span class="m-val">255<small>&uarr; 963%</small></span>
+      </div>
+      <p class="plat-note">Reels are doing the heavy lifting: 7 reels in the trailing 30 days drove 187K reel views to 116K unique viewers, with 1.9K shares. Sharing is the strongest signal on the platform and it is now the top engagement behavior on this account.</p>
+    </div>
+  </div>
+
+  <!-- FACEBOOK -->
+  <div class="plat-block">
+    <div class="plat-head">
+      <div>
+        <div class="plat-name">Facebook</div>
+        <div class="plat-handle">Terrible's</div>
+      </div>
+      <div>
+        <div class="plat-follow-num">44,291</div>
+        <div class="plat-follow-label">Page Followers</div>
+        <div class="plat-follow-delta">&uarr; +256 (+0.6%)</div>
+      </div>
+    </div>
+    <div class="plat-body">
+      <div class="metric-row">
+        <span class="m-label">Page Views</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:100%"></div></div>
+        <span class="m-val">216,315<small>&uarr; from 14,305</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Post Views</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:78%"></div></div>
+        <span class="m-val">169,104<small>&uarr; from 10,487</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Engagements</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:40%"></div></div>
+        <span class="m-val">4,489<small>&uarr; from 185</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Likes (unique)</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:30%"></div></div>
+        <span class="m-val">1,502<small>&uarr; from 36</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Shares (unique)</span>
+        <div class="m-bar-bg"><div class="m-bar navy" style="width:12%"></div></div>
+        <span class="m-val">141<small>&uarr; from 11</small></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIKTOK -->
+  <div class="plat-block">
+    <div class="plat-head">
+      <div>
+        <div class="plat-name">TikTok</div>
+        <div class="plat-handle">@terribleherbst</div>
+      </div>
+      <div>
+        <div class="plat-follow-num">6,131</div>
+        <div class="plat-follow-label">Followers</div>
+        <div class="plat-follow-delta">&uarr; +544 (+9.7%)</div>
+      </div>
+    </div>
+    <div class="plat-body">
+      <div class="metric-row">
+        <span class="m-label">Video Views</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:100%"></div></div>
+        <span class="m-val">46,620<small>&uarr; from 930</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Audience Reached</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:82%"></div></div>
+        <span class="m-val">38,007<small>&uarr; from 795</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Profile Views</span>
+        <div class="m-bar-bg"><div class="m-bar navy" style="width:9%"></div></div>
+        <span class="m-val">2,195<small>&uarr; from 143</small></span>
+      </div>
+      <p class="plat-note">Fastest-growing audience of any channel at +9.7% in one month. TikTok is where the brand is being discovered by people with no prior connection to Terrible's, and the Primm post earned a viral badge with a 9.3% engagement rate.</p>
+    </div>
+  </div>
+
+  <!-- X -->
+  <div class="plat-block">
+    <div class="plat-head">
+      <div>
+        <div class="plat-name">X (Twitter)</div>
+        <div class="plat-handle">@TerribleHerbst</div>
+      </div>
+      <div>
+        <div class="plat-follow-num">33,498</div>
+        <div class="plat-follow-label">Followers</div>
+      </div>
+    </div>
+    <div class="plat-body">
+      <div class="metric-row">
+        <span class="m-label">Impressions</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:100%"></div></div>
+        <span class="m-val">6,587<small>&uarr; 299%</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Engagements</span>
+        <div class="m-bar-bg"><div class="m-bar" style="width:35%"></div></div>
+        <span class="m-val">190<small>&uarr; 296%</small></span>
+      </div>
+      <div class="metric-row">
+        <span class="m-label">Reposts</span>
+        <div class="m-bar-bg"><div class="m-bar navy" style="width:14%"></div></div>
+        <span class="m-val">13<small>&uarr; 550%</small></span>
+      </div>
+      <p class="plat-note">Top posts on X are running engagement rates between 4.75% and 5.82%, well above typical brand benchmarks for the platform. X also serves as the direct line to Vegas media, and the Primm and Lotto Store announcements both earned outlet pickup through strategic tagging.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TOP CONTENT ═══════════ -->
+<section class="wrap" id="top">
+  <div class="kicker">04 &mdash; What Worked</div>
+  <h2>Top Content of the Month</h2>
+  <p class="lede">The winners share a pattern: they are either <strong>real brand moments</strong> (Primm, the Lotto Store) or <strong>personality plays</strong> that sound like a person, not a corporation. The emoji post hit a 12.87% engagement rate on Instagram with zero budget and zero promotion. Personality is the cheapest reach we have.</p>
+
+  <div class="top-cards">
+    <div class="top-card">
+      <span class="rank">1</span>
+      <a class="top-thumb-link" href="https://www.instagram.com/reel/DbFC5l8idYx/" target="_blank" rel="noopener">
+        <img class="top-thumb" src="assets/primm-reopening.png" alt="Primm Valley Resort & Casino reopening post">
+      </a>
+      <div>
+        <div class="post-title"><a href="https://www.instagram.com/reel/DbFC5l8idYx/" target="_blank" rel="noopener">Primm Valley Resort &amp; Casino Reopening</a></div>
+        <div class="post-date">Jul 22 &middot; FB + IG + TikTok + X</div>
+        <div class="post-why">Real news with community stakes, coordinated across every channel with media and creator tagging.</div>
+        <span class="stat-pill">FB <b>96.5K views</b></span>
+        <span class="stat-pill">IG <b>88.6K reach</b></span>
+        <span class="stat-pill">TikTok <b>44.1K views</b></span>
+        <span class="stat-pill"><b>Viral on 3 platforms</b></span>
+      </div>
+    </div>
+
+    <div class="top-card">
+      <span class="rank">2</span>
+      <a class="top-thumb-link" href="https://www.instagram.com/p/DbLnvdampzg/" target="_blank" rel="noopener">
+        <img class="top-thumb" src="assets/emojis-we-deserve.png" alt="The Emojis We Deserve post">
+      </a>
+      <div>
+        <div class="post-title"><a href="https://www.instagram.com/p/DbLnvdampzg/" target="_blank" rel="noopener">"The Emojis We Deserve"</a></div>
+        <div class="post-date">Jul 24 &middot; IG + FB + X</div>
+        <div class="post-why">Pure brand voice. Low lift, high personality, invited replies with a direct question.</div>
+        <span class="stat-pill">IG <b>12.87% ER</b></span>
+        <span class="stat-pill">FB <b>7.03% ER</b></span>
+        <span class="stat-pill">X <b>5.29% ER</b></span>
+      </div>
+    </div>
+
+    <div class="top-card">
+      <span class="rank">3</span>
+      <a class="top-thumb-link" href="https://www.instagram.com/p/DaRAQUtkh9Q/" target="_blank" rel="noopener">
+        <img class="top-thumb" src="assets/primm-lotto.png" alt="PRIMM Lotto Store reopening post">
+      </a>
+      <div>
+        <div class="post-title"><a href="https://www.instagram.com/p/DaRAQUtkh9Q/" target="_blank" rel="noopener">PRIMM Lotto Store Reopening</a></div>
+        <div class="post-date">Jul 1 &middot; FB + IG + X</div>
+        <div class="post-why">Second real-news moment of the month, proof the announcement playbook repeats.</div>
+        <span class="stat-pill">FB <b>11.42% ER</b></span>
+        <span class="stat-pill">IG <b>10.56% ER</b></span>
+        <span class="stat-pill">X <b>5.82% ER</b></span>
+      </div>
+    </div>
+
+    <div class="top-card">
+      <span class="rank">4</span>
+      <a class="top-thumb-link" href="https://www.instagram.com/p/Dai2Y_llMfz/" target="_blank" rel="noopener">
+        <img class="top-thumb" src="assets/pumpin-gas.png" alt="Time flies when you're pumpin' gas post">
+      </a>
+      <div>
+        <div class="post-title"><a href="https://www.instagram.com/p/Dai2Y_llMfz/" target="_blank" rel="noopener">"Time Flies When You're Pumpin' Gas"</a></div>
+        <div class="post-date">Jul 8 &middot; IG + FB + X</div>
+        <div class="post-why">Everyday relatability at the pump, shot in-store. The kind of evergreen voice content that fills the calendar between moments.</div>
+        <span class="stat-pill">IG <b>6.5K reach</b></span>
+        <span class="stat-pill">FB <b>5.51% ER</b></span>
+        <span class="stat-pill">X <b>4.35% ER</b></span>
+      </div>
+    </div>
+
+    <div class="top-card">
+      <span class="rank">5</span>
+      <a class="top-thumb-link" href="https://www.instagram.com/p/DaYH0s7mo4U/" target="_blank" rel="noopener">
+        <img class="top-thumb" src="assets/fourth-of-july.png" alt="Fourth of July Deliberately Different post">
+      </a>
+      <div>
+        <div class="post-title"><a href="https://www.instagram.com/p/DaYH0s7mo4U/" target="_blank" rel="noopener">Fourth of July: "Deliberately Different"</a></div>
+        <div class="post-date">Jul 4 &middot; IG + FB + X</div>
+        <div class="post-why">Holiday moment executed in brand voice instead of a generic graphic.</div>
+        <span class="stat-pill">IG <b>9.09% ER</b></span>
+        <span class="stat-pill">FB <b>8.5% ER</b></span>
+        <span class="stat-pill">X <b>3.04% ER</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SYSTEMS ═══════════ -->
+<section class="wrap" id="systems">
+  <div class="kicker">05 &mdash; Built to Repeat</div>
+  <h2>Content Systems Now Live</h2>
+  <p class="lede">The numbers above came from repeatable series, not one-off posts. Each of these is now a standing franchise with its own format, cadence, and shot list, which means next month's calendar is already structured.</p>
+
+  <div class="sys-grid">
+    <div class="sys">
+      <h4>Not So Terrible Deals</h4>
+      <p>Monthly deal series shot in-store, batch-produced in a single shoot day. July featured Aquafina, Michelob ULTRA, Twisted Tea, Stella Artois, HI-CHEW, and Monster across all platforms.</p>
+    </div>
+    <div class="sys">
+      <h4>Terrible Tuesday</h4>
+      <p>Weekly app-exclusive deal drop driving T+ Rewards opens. Same spot, new deal, every week. Builds a habit loop between social and the app.</p>
+    </div>
+    <div class="sys">
+      <h4>#TerribleArt</h4>
+      <p>Mural series with partner brands. The Red Bull wall and the FRE x Riley Herbst race-day drop both landed this month, turning store locations into destinations.</p>
+    </div>
+    <div class="sys">
+      <h4>100 Days of Summer Support</h4>
+      <p>Weekly social amplification of the summer rewards program, keeping daily fuel discounts and BOGO offers in front of the audience all season.</p>
+    </div>
+    <div class="sys">
+      <h4>Moment Marketing</h4>
+      <p>Free Frazil Friday, fireworks stands, the Car Wash Job Fair. Real things happening at real locations, covered fast.</p>
+    </div>
+    <div class="sys">
+      <h4>The Announcement Playbook</h4>
+      <p>Primm proved the formula: platform-native versions, media tagging, creator amplification, day-of follow-up. Ready to deploy for the next big brand moment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ NEXT ═══════════ -->
+<section class="wrap" id="next">
+  <div class="kicker">06 &mdash; What's Next</div>
+  <h2>August Is Already in Motion</h2>
+  <div class="next-list">
+    <div class="next-item">
+      <span class="next-mark">&rarr;</span>
+      <div>
+        <h5>August NSTD slate is in production</h5>
+        <p>Seven deals, full shot list built, batch shoot scheduled. Every video shot in-store with NSTD branding on-screen and in caption.</p>
+      </div>
+    </div>
+    <div class="next-item">
+      <span class="next-mark">&rarr;</span>
+      <div>
+        <h5>Ride the Primm momentum</h5>
+        <p>The reopening pulled six figures of new eyeballs to our profiles. Follow-up content from the property keeps that audience while it is still warm.</p>
+      </div>
+    </div>
+    <div class="next-item">
+      <span class="next-mark">&rarr;</span>
+      <div>
+        <h5>Double down on shares and saves</h5>
+        <p>Shares grew faster than any other engagement type this month. More personality posts and more shareable in-store moments feed the strongest signal we have.</p>
+      </div>
+    </div>
+    <div class="next-item">
+      <span class="next-mark">&rarr;</span>
+      <div>
+        <h5>Grow TikTok while the algorithm is paying attention</h5>
+        <p>At +9.7% follower growth and a viral post in month one, TikTok has the most open runway. Consistent posting cadence is the next unlock.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+<footer>
+  Terrible's Social Performance Report &middot; Jun 29 &ndash; Jul 28, 2026 &middot; Prepared by Robert G. Whittaker, Digital Marketing Manager
+</footer>
+
+</body>
+</html>
